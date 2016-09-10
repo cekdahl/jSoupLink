@@ -34,8 +34,9 @@ ParseDOM[html_String, baseUri_String:""] := Module[{doc, root},
 
 ExportDOM[filename_, data_, opts___] := Export[filename, data["OuterHTML"], "Text",opts]
 
-icon = Import["assets/documenticon.png"];
+icon = Import[DirectoryName[$InputFileName] <> "assets/documenticon.png"];
 
+(* http://mathematica.stackexchange.com/questions/77658/how-to-create-a-dynamic-expanding-displayforms-styled-like-the-ones-in-v10/79891#79891 *)
 MakeBoxes[obj_Global`HTMLElement, fmt_] ^:= Module[{el = First[obj], shown, hidden, icon = Show[icon, ImageSize -> 70]},
       shown = {
         {BoxForm`MakeSummaryItem[{"Tag: ", el@tagName[]}, fmt], SpanFromLeft},
