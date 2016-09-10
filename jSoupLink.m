@@ -6,7 +6,7 @@
 (* :Date: 2016-09-02                       *)
 
 (* :Package Version: 0.8                   *)
-(* :Mathematica Version: 11.0              *)
+(* :Mathematica Version: 11.0.0.0          *)
 (* :Copyright: (c) 2016 Calle Ekdahl       *)
 (* :Keywords:                              *)
 (* :Discussion:                            *)
