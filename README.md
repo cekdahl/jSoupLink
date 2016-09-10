@@ -8,7 +8,7 @@ Current version: 0.8
 
 ## Introduction
 
-[jsoup](http://jsoup.org) is an open-source library written in Java, it excels at parsing HTML and manipulating the DOM. jsoupLink is a package written for Mathematica in Wolfram Language which aims to provide an interface to jsoup that feels natural for Mathematica users.
+[jsoup](http://jsoup.org) is an open-source library written in Java, which excels at parsing HTML and manipulating the DOM. jsoupLink is a package written for Mathematica in Wolfram Language which aims to provide an interface to jsoup that feels natural for Mathematica users.
 
 While traditionally HTML has been worked on in Mathematica by importing it as symbolic XML and painstakingly transforming it with pattern matching, jsoupLink introduces the concept of HTML element objects, which make it super easy to traverse the DOM tree and to modify it.
 
