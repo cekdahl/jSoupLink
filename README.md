@@ -204,7 +204,7 @@ Return a copy of `element`, such that modifications done to the copy do not affe
 ## DOM Tree Interface
 `element["DOMTree"]` opens an interface to view the DOM tree with `element` as root:
 
-![Mathematica Graphics](https://dl.dropboxusercontent.com/u/2736911/domview.gif)
+![Screen recording](https://mmase.s3.amazonaws.com/domview.gif)
 
 Elements can be selected by clicking on them. The "copy node" button writes the corresponding element to the clipboard, so that it can be pasted into a notebook. "Copy CSS selector" writes a CSS selector that uniquely identifies the selected element to the clipboard.
 
