@@ -1,0 +1,110 @@
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["dev", \
+"Subsection",ExpressionUUID->"a64ef65f-d309-40ce-9bb4-6b281b7aa57f"],
+
+Cell[BoxData["Quit"], "Input",
+ CellLabel->"In[11]:=",ExpressionUUID->"ae1d5fab-ab35-4964-9ba9-273ea2975a97"],
+
+Cell[BoxData[
+ RowBox[{"SetDirectory", "@", 
+  RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"259763a5-2c9b-4822-852a-fbe263862dcc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"PrependTo", "[", 
+   RowBox[{"$Path", ",", 
+    RowBox[{"Directory", "[", "]"}]}], "]"}], ";"}]], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"7e073d0e-8e03-4707-a64d-967fdecfc475"],
+
+Cell[BoxData[
+ RowBox[{"PacletDirectoryAdd", "@", 
+  RowBox[{"NotebookDirectory", "[", "]"}]}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"5fb09c6d-450f-48c8-8adb-2c91bb1153fb"],
+
+Cell[BoxData[
+ RowBox[{"PacletFind", "@", "\"\<jsoupLink\>\""}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"4a4fac8a-cc8a-47a2-8d8c-67aacabf0132"],
+
+Cell[BoxData[
+ RowBox[{"<<", "jsoupLink`"}]], "Input",
+ CellLabel->
+  "In[13]:=",ExpressionUUID->"a6eb9bb3-d742-4fc6-9887-1be228c19a50"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["deploy", \
+"Subsection",ExpressionUUID->"f2edf24c-b7ee-4dbb-bc13-b039b78b278e"],
+
+Cell[BoxData["Quit"], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"571e8920-4fee-41db-a851-3660b67d914c"],
+
+Cell[BoxData[
+ RowBox[{"PacletUninstall", "/@", 
+  RowBox[{"PacletFind", "@", "\"\<jsoupLink\>\""}]}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"380bafc0-fd29-4072-95d1-8cd598f8907f"],
+
+Cell[BoxData[{
+ RowBox[{"SetDirectory", "@", 
+  RowBox[{"NotebookDirectory", "[", "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"PrependTo", "[", 
+   RowBox[{"$Path", ",", 
+    RowBox[{"Directory", "[", "]"}]}], "]"}], ";"}], "\n", 
+ RowBox[{"PacletDirectoryAdd", "@", 
+  RowBox[{"NotebookDirectory", "[", "]"}]}]}], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"b0df9294-b64a-46c7-9e1e-c7f6f352f8a7"],
+
+
+Cell[BoxData[
+ RowBox[{"PackPaclet", "@", "\"\<jsoupLink\>\""}]], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"c4549d81-0cb6-42e2-9d36-211c1e0650cf"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"PacletInstall", "[", 
+   RowBox[{"%", ",", 
+    RowBox[{"\"\<IgnoreVersion\>\"", "\[Rule]", "True"}]}], "]"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+   "ignore", " ", "just", " ", "to", " ", "make", " ", "sure", " ", "it", " ", 
+    RowBox[{"won", "'"}], "t", " ", "interfere", " ", "with", " ", "dev", " ",
+     "paclet"}], " ", "*)"}]}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"3dded4e0-e299-4e6f-a611-c9a549c3c0b0"],
+
+Cell[BoxData["Quit"], "Input",
+ CellLabel->"In[7]:=",ExpressionUUID->"9991eae6-4904-41ce-ab44-b38d810ea1bf"],
+
+Cell[BoxData[
+ RowBox[{"PacletInformation", "/@", 
+  RowBox[{"PacletFind", "@", "\"\<jsoupLink\>\""}]}]], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"38665ffd-bce4-4ece-bd64-1dc89f9361c4"],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+   RowBox[{".", "paclet"}], " ", "is", " ", "ready", " ", "to", " ", "put", 
+   " ", "it", " ", "up", " ", "as", " ", "an", " ", "asset", " ", "for", " ", 
+   "a", " ", "release"}], 
+  "*)"}]], "Input",ExpressionUUID->"0bc5972d-4ec3-4857-abed-e4380b8a78b5"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<jsoupLink`\>\"", "]"}]], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"1d5083a8-9400-4eec-a4cc-96b5cf84087d"],
+
+Cell[BoxData[""], \
+"Input",ExpressionUUID->"fd6ad780-7e19-4e78-a846-81f3529bf4a5"]
+}, Open  ]]
+},
+WindowSize->{1039, 994},
+WindowMargins->{{Automatic, 55}, {Automatic, 92}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+TrackCellChangeTimes->False,
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+

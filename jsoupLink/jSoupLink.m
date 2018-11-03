@@ -3,11 +3,11 @@
 (* :Title: jsoupLink                       *)
 (* :Context: jsoupLink`                    *)
 (* :Author: Calle Ekdahl                   *)
-(* :Date: 2016-09-02                       *)
+(* :Date: 2018-11-03                       *)
 
-(* :Package Version: 0.8                   *)
-(* :Mathematica Version: 11.0.0.0          *)
-(* :Copyright: (c) 2016 Calle Ekdahl       *)
+(* :Package Version: 1.0                   *)
+(* :Mathematica Version: 11.3.0.0          *)
+(* :Copyright: (c) 2015-2018 Calle Ekdahl  *)
 (* :Keywords:                              *)
 (* :Discussion:                            *)
 
@@ -50,6 +50,17 @@ MakeBoxes[obj_Global`HTMLElement, fmt_] ^:= Module[{el = First[obj], shown, hidd
       };
       BoxForm`ArrangeSummaryBox[Global`HTMLElement, obj, icon, shown, hidden, fmt, "Interpretable" -> True]
     ];
+
+(* https://chat.stackexchange.com/transcript/message/47430225#47430225 *)
+Global`HTMLElement::reserved = "The attribute \"``\" can't be set using Set (=) because the name collides with a jsoupLink property.";
+SetAttributes[myMutationHandler, HoldAllComplete]
+myMutationHandler[Set[node_[attr_], val_]] := If[
+  MemberQ[node["Properties"], attr],
+  Message[Global`HTMLElement::reserved, attr]; node,
+  node["Attribute", attr, val]
+]
+myMutationHandler[___] := Language`MutationFallthrough;
+Language`SetMutationHandler[Global`HTMLElement, myMutationHandler]
 
 Global`HTMLElement[el_]["TagName"] := el@tagName[]
 Global`HTMLElement[el_]["TagName", tag_] := el@tagName[tag]
@@ -96,8 +107,7 @@ Global`HTMLElement[el_]["Wrap", html_] := Global`HTMLElement[el@wrap[html]]
 Global`HTMLElement[el_]["Unwrap", html_] := With[{p=el@parent[]}, el@unwrap[]; Global`HTMLElement[p]]
 Global`HTMLElement[el_]["Clean"] := Global`HTMLElement[el@html[Jsoup`clean[el@html[]]]]
 Global`HTMLElement[el_]["DeepCopy"] := Global`HTMLElement[JavaBlock[el@clone[]]]
-Global`HTMLElement[el_]["DOMTree"] := tree[el]
-Global`HTMLElement[el_]["DOMTreeWindow"] := popup[el]
+Global`HTMLElement[el_]["DOMTree"] := CreateDialog[tree[el]]
 
 properties = {"TagName", "Root", "Parent", "Children", "Siblings",
   "Select", "AllElements", "Value", "InnerHTML", "OuterHTML",
@@ -105,7 +115,7 @@ properties = {"TagName", "Root", "Parent", "Children", "Siblings",
   "Attribute", "Attributes", "RemoveAttribute", "IsBlock", "HasText",
   "BaseURI", "HasClass", "AddClass", "RemoveClass", "ToggleClass",
   "After", "Before", "Append", "Prepend", "ReplaceWith", "Remove",
-  "Wrap", "Unwrap", "Clean", "DeepCopy", "DOMTree", "DOMTreeWindow"};
+  "Wrap", "Unwrap", "Clean", "DeepCopy", "DOMTree"};
 
 Global`HTMLElement[el_]["Properties"] := properties;
 

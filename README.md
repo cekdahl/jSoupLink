@@ -4,7 +4,7 @@ Created by Calle Ekdahl.
 
 GPL-2.0+ licensed.
 
-Current version: 0.8
+Current version: 1.0
 
 ## Introduction
 
@@ -14,11 +14,12 @@ While traditionally HTML has been worked on in Mathematica by importing it as sy
 
 The most common application for jsoupLink is to extract information from websites, for example table data.
 
-## Installing jsoupLink
-Download the files in this repository, put them in a directory named "jsoupLink" and put the directory inside
+## Installing OBJImporter
+`OBJImporter` is distributed in the form of a paclet. Download the latest version of the paclet from [the releases page](https://github.com/cekdahl/OBJImporter/releases) and install it using the the `PacletManager` package (which you already have because it comes with Mathematica):
 
-    FileNameJoin[{$UserBaseDirectory, "Applications"}]
-    
+    Needs["PacletManager`"]
+    PacletInstall["~/Downloads/jSoupLink-1.0.0.paclet"]
+
 Use `Needs` to load jsoupLink:
 
     Needs["jsoupLink`"]
@@ -41,7 +42,7 @@ jsoupLink provides direct access to all of these objects and their properties. I
 
 Starting with the object corresponding to the outermost element, `html`, various properties can be used to find all other elements of interest. Properties can be retrieved as subvalues of the objects, as in the image.
 
-In difference to normal Wolfram Language expressions, objects representing elements are mutable, and there are several properties that can modify elements. Most properties can be accessed as `obj["property"]`, some take several arguments, e.g. `obj["Attribute", "attributeName"]`, or `obj["Attribute", "key", "value"]`, which will set the attribute `key` to the value `value`.
+In difference to normal Wolfram Language expressions, objects representing elements are mutable, and there are several properties that can modify elements. Most properties can be accessed as `obj["property"]`, some take several arguments, e.g. `obj["Attribute", "attributeName"]`, or `obj["Attribute", "key", "value"]`, which will set the attribute `key` to the value `value`. Since setting attributes is a common task, the shorthand notation `obj[key] = val` is also provided.
 
 ## Properties
 Throughout this list, objects representing HTML elements will be referred to simply as elements. Elements are arranged in a tree structure, called the DOM tree. Whenever descriptions such as "the same level" or "topmost", or "beneath" are used in the following text, it refers to this tree structure. (See also the first paragraph of the preceding section.)
@@ -196,10 +197,8 @@ Return a copy of `element`, such that modifications done to the copy do not affe
  List all properties.
 
  - `element["DOMTree"]`
- Display the DOM tree. `assoc` can be used to provide options, detailed below.
+ Display the DOM tree. Details below.
 
- - `element["DOMTreeWindow"]`
- Display the DOM tree in a separate window. `assoc` can be used to provide options, detailed below.
 
 ## DOM Tree Interface
 `element["DOMTree"]` opens an interface to view the DOM tree with `element` as root:
@@ -207,7 +206,3 @@ Return a copy of `element`, such that modifications done to the copy do not affe
 ![Screen recording](https://mmase.s3.amazonaws.com/domview.gif)
 
 Elements can be selected by clicking on them. The "copy node" button writes the corresponding element to the clipboard, so that it can be pasted into a notebook. "Copy CSS selector" writes a CSS selector that uniquely identifies the selected element to the clipboard.
-
-`element["DOMTree", options]` accepts the following options: `Width`, `Height`, `FontSize`. These options determine how large the display is initially.
-
-`element["DOMTreeWindow", options]` takes the additional options `WindowWidth` and `WindowHeight` to determine the initial size of the window. Appropriate values vary from system to system.
