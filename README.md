@@ -14,7 +14,7 @@ While traditionally HTML has been worked on in Mathematica by importing it as sy
 
 The most common application for jsoupLink is to extract information from websites, for example table data.
 
-## Installing OBJImporter
+## Installing jsoupLink
 `OBJImporter` is distributed in the form of a paclet. Download the latest version of the paclet from [the releases page](https://github.com/cekdahl/OBJImporter/releases) and install it using the the `PacletManager` package (which you already have because it comes with Mathematica):
 
     Needs["PacletManager`"]
