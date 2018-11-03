@@ -206,3 +206,7 @@ Return a copy of `element`, such that modifications done to the copy do not affe
 ![Screen recording](https://mmase.s3.amazonaws.com/domview.gif)
 
 Elements can be selected by clicking on them. The "copy node" button writes the corresponding element to the clipboard, so that it can be pasted into a notebook. "Copy CSS selector" writes a CSS selector that uniquely identifies the selected element to the clipboard.
+
+## Retrieving absolute URLs
+
+If you are having problem retrieving absolute URLs from links, you may try to retrieve the `abs:href` attribute instead of the `href` attribute.
