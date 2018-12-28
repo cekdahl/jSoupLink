@@ -120,16 +120,24 @@ properties = {"TagName", "Root", "Parent", "Children", "Siblings",
 Global`HTMLElement[el_]["Properties"] := properties;
 
 hasPropertyQ[prop_] := MemberQ[properties, prop]
+hasAttributeQ[node_, attr_] := MemberQ[Keys[node["Attributes"]], attr]
 
 HTMLElement::argx = "Property `1` called with the wrong number of arguments."
 HTMLElement::noproperty = "The property `1` does not exist."
 
 Global`HTMLElement[el_][prop_?hasPropertyQ, ___] := (Message[HTMLElement::argx, prop]; $Failed)
-Global`HTMLElement[el_][prop_, ___] := (Message[HTMLElement::noproperty, prop]; $Failed)
+Global`HTMLElement[el_][prop_, __] := (Message[HTMLElement::noproperty, prop]; $Failed)
+Global`HTMLElement[el_][attr_?(Not[hasPropertyQ[#]]&)] := If[
+  hasAttributeQ[Global`HTMLElement[el], attr],
+  Global`HTMLElement[el]["Attribute", attr],
+  Message[HTMLElement::noproperty, attr]; $Failed
+]
 
 (* http://mathematica.stackexchange.com/questions/59768/how-to-call-a-java-method-that-takes-a-boolean-not-boolean
 This may not work on all systems. *)
 Global`HTMLElement[el_]["Attribute", key_String, value:(True | False)] := Global`HTMLElement[el@attr[key, value]]
+
+Global`HTMLElement[el_][prop_?Not@*hasPropertyQ] := Global`HTMLElement[el]["Attribute", prop]
 
 ElementProperty[node_Global`HTMLElement, property__] := node[property]
 ElementProperty[node_Global`HTMLElement][property__] := node[property]

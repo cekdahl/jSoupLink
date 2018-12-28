@@ -42,7 +42,7 @@ jsoupLink provides direct access to all of these objects and their properties. I
 
 Starting with the object corresponding to the outermost element, `html`, various properties can be used to find all other elements of interest. Properties can be retrieved as subvalues of the objects, as in the image.
 
-In difference to normal Wolfram Language expressions, objects representing elements are mutable, and there are several properties that can modify elements. Most properties can be accessed as `obj["property"]`, some take several arguments, e.g. `obj["Attribute", "attributeName"]`, or `obj["Attribute", "key", "value"]`, which will set the attribute `key` to the value `value`. Since setting attributes is a common task, the shorthand notation `obj[key] = val` is also provided.
+In difference to normal Wolfram Language expressions, objects representing elements are mutable, and there are several properties that can modify elements. Most properties can be accessed as `obj["property"]`, some take several arguments, e.g. `obj["Attribute", "attributeName"]`, or `obj["Attribute", "key", "value"]`, which will set the attribute `key` to the value `value`. Since setting attributes is a common task, the shorthand notation `obj[key] = val` is also provided. Attributes can also be retrieved with `obj[attr]` if `attr` is not one of the properties listed by `obj["Properties"]`.
 
 ## Properties
 Throughout this list, objects representing HTML elements will be referred to simply as elements. Elements are arranged in a tree structure, called the DOM tree. Whenever descriptions such as "the same level" or "topmost", or "beneath" are used in the following text, it refers to this tree structure. (See also the first paragraph of the preceding section.)
