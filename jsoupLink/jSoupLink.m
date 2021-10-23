@@ -18,6 +18,7 @@ Begin["`Private`"] (* Begin Private Context *)
 
 Needs["JLink`"]
 InstallJava[];
+AddToClassPath[FileNameJoin[{DirectoryName[$InputFileName], "Java/jsoup-1.9.2.jar"}]];
 LoadJavaClass["org.jsoup.Jsoup"];
 
 ImportExport`RegisterImport["HTMLDOM", jsoupLink`DownloadDOM];
@@ -34,7 +35,7 @@ ParseDOM[html_String, baseUri_String:""] := Module[{doc, root},
 
 ExportDOM[filename_, data_, opts___] := Export[filename, data["OuterHTML"], "Text",opts]
 
-icon = Import[DirectoryName[$InputFileName] <> "assets/documenticon.png"];
+icon = Import[FileNameJoin[{DirectoryName[$InputFileName], "assets/documenticon.png"}]];
 
 (* http://mathematica.stackexchange.com/questions/77658/how-to-create-a-dynamic-expanding-displayforms-styled-like-the-ones-in-v10/79891#79891 *)
 MakeBoxes[obj_Global`HTMLElement, fmt_] ^:= Module[{el = First[obj], shown, hidden, icon = Show[icon, ImageSize -> 70]},
@@ -53,7 +54,7 @@ MakeBoxes[obj_Global`HTMLElement, fmt_] ^:= Module[{el = First[obj], shown, hidd
 
 (* https://chat.stackexchange.com/transcript/message/47430225#47430225 *)
 Global`HTMLElement::reserved = "The attribute \"``\" can't be set using Set (=) because the name collides with a jsoupLink property.";
-SetAttributes[myMutationHandler, HoldAllComplete]
+SetAttributes[myMutationHandler, HoldAllComplete];
 myMutationHandler[Set[node_[attr_], val_]] := If[
   MemberQ[node["Properties"], attr],
   Message[Global`HTMLElement::reserved, attr]; node,
